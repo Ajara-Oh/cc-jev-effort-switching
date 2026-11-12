@@ -1,0 +1,5 @@
+config.json
+.jevkey
+*.log
+proxy-service.lock
+__pycache__/

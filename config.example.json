@@ -1,0 +1,7 @@
+{
+  "api_key": "YOUR_JEV_API_KEY",
+  "levels": ["low", "medium", "high", "xhigh"],
+  "min_confidence": 0.45,
+  "jev_timeout_s": 3.0,
+  "debug": false
+}

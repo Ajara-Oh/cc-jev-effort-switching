@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+# Run Claude Code through the Jev effort proxy. All arguments go to `claude`.
+set -euo pipefail
+dir="$(cd "$(dirname "$(readlink -f "$0")")" && pwd)"
+port="$(python3 "$dir/jev_proxy_service.py" ensure)"
+# Started from inside another Claude Code session, these would make this one a
+# child session with transcripts off.
+unset CLAUDECODE AI_AGENT CLAUDE_PID CLAUDE_EFFORT \
+  CLAUDE_CODE_CHILD_SESSION CLAUDE_CODE_SESSION_ID CLAUDE_CODE_SESSION_ATTENDED \
+  CLAUDE_CODE_MESSAGING_SOCKET CLAUDE_CODE_MESSAGING_TOKEN \
+  CLAUDE_CODE_ENTRYPOINT CLAUDE_CODE_EXECPATH
+export ANTHROPIC_BASE_URL="http://127.0.0.1:$port"
+exec claude "$@"
